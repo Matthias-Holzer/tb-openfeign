@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entries</title>
+    <link th:href="@{bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Download</h1>
+<a th:href="@{entries_all.csv}">All Entries</a>
+<a th:href="@{entries_open_deadline.csv}">With open deadline</a>
+<a th:href="@{entries_exceeded_deadline.csv}">With exceeded deadline</a>
+
+
+<h1>Table</h1>
+<table class="table table-striped">
+    <thead class="table-dark">
+    <th scope="row">id</th>
+    <th scope="row">project_person_id</th>
+    <th scope="row">project_kam_id</th>
+    <th scope="row">position_id</th>
+    <th scope="row">project_id</th>
+    <th scope="row">project_number</th>
+    <th scope="row">due_date</th>
+    <th scope="row">last_status</th>
+    </thead>
+    <tbody>
+    <tr th:each="x : ${a}" th:style="${x.due_date.before(#dates.createNow())}? 'background-color:#f56642'">
+        <td th:text="${x.id}"></td>
+        <td th:text="${x.project_person_id}"></td>
+        <td th:text="${x.project_kam_id}"></td>
+        <td th:text="${x.position_id}"></td>
+        <td th:text="${x.project_id}"></td>
+        <td th:text="${x.project_number}"></td>
+        <td th:text="${x.due_date}"></td>
+        <td th:text="${x.last_status}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
